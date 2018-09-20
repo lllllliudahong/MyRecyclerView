@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,24 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(new RecyclerViewAdapter(this,titles));
         //添加分割线
         mRecyclerView.addItemDecoration(new SimplePaddingDecoration(this));
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //在此处做点击之后的逻辑处理
+//                Toast.makeText(MainActivity.this, "点击 ---- " + position, Toast.LENGTH_SHORT).show();
+//                TextView textView = view.findViewById(R.id.id_num);
+//                textView.setText("点击 ---- " + position);
+//                titles.set(position,"点击 ---- " + position);
+            }
+
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //在此处做长按之后的逻辑处理
+                Toast.makeText(MainActivity.this, "长按 ---- " + position, Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 
     protected void initData() {
